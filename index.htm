@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>countin is essential</title>
+    <style>
+        body {
+            /* background: linear-gradient(180deg, rgb(0, 255, 64),rgb(0, 204, 255));
+             */
+            background: linear-gradient(135deg, rgba(228, 0, 0, 0.959), rgba(177, 125, 28, 0.856), rgba(161, 161, 28, 0.596), rgba(34, 180, 34, 0.534), rgba(44, 44, 170, 0.637), rgba(112, 43, 161, 0.822), rgba(255, 1, 255, 0.651));
+            ;
+            height: 100%;
+        }
+
+        .container {
+            width: 50%;
+            height: 100vh;
+            margin: auto;
+            box-shadow: 10px 10px 10px 10px rgba(129, 129, 129, 0.747);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .screen {
+            height: 100px;
+            width: 100%;
+            background-color: black;
+            font-family: sans-serif;
+            color: blanchedalmond;
+            text-align: right;
+            padding-top: 38px;
+            font-size: 34px;
+            box-sizing: border-box;
+            overflow-y: hidden;
+            border: 2px solid wheat;
+            border-bottom: none;
+        }
+
+        .btns {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            height: 350px;
+        }
+
+        button {
+            width: 25%;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace, sans-serif;
+            font-size: 24px;
+            font-weight: bolder;
+            border-radius: 0%;
+
+        }
+
+        .btns :nth-child(14) {
+            background-color: rgb(255, 38, 38);
+        }
+
+        .btns :nth-child(15) {
+            background-color: rgb(53, 236, 53);
+        }
+
+        .oper {
+            background-color: rgb(209, 113, 23);
+            border-width: 0.5px;
+        }
+
+        .oper:active {
+            box-shadow: 2px 2px gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="screen">0</div>
+        <div class="btns">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="oper">*</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="oper">/</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="oper">-</button>
+            <button>0</button>
+            <button>C</button>
+            <button>=</button>
+            <button class="oper">+</button>
+        </div>
+    </div>
+    <script>
+        screen = document.querySelector('.screen');
+        btnsArea = document.querySelector('.btns');
+        let curtNum = 0;
+        btnsArea.addEventListener('click', function (event) {
+            txt = event.target.innerText;
+            handletxt(txt);
+        })
+
+        function handletxt(txt) {
+            if (isNaN(parseInt(txt))) {
+                handleSymbol(txt);
+            } else {
+                handleNumber(txt);
+            }
+        }
+
+        function handleNumber(txt) {
+            console.log("handling number")
+            if (screen.innerText == 0) {
+                screen.innerText = txt;
+                screen.innerText = screen.innerText;
+                symbolPressed = false;
+            } else {
+                screen.innerText += txt;
+                screen.innerText = screen.innerText;
+            }
+            if (symbolPressed) {
+                screen.innerText = txt;
+                console.log("pressed symbol");
+                symbolPressed = false;
+            }
+        }
+        let symbol;
+        let symbolPressed = false;
+        let prevNum;
+        let symboleven;
+        let symbolodd;
+        operations = 0;
+        function handleSymbol(txt) {
+            operations++;
+            symbolPressed = true;
+
+
+            if (txt == "C") {
+                symbol == null;
+                prevNum = 0;
+                symbolPressed = false;
+                operations = 0;
+                screen.innerText = 0;
+            }
+
+
+            if (operations % 2 != 0) {
+                prevNum = parseInt(screen.innerText);
+                symbolodd = txt;
+                console.log("odd operation");
+            }
+
+
+            if (operations < 1) {
+                return;
+            } else {
+                switch (symboleven) {
+                    case "+":
+                        prevNum += curtNum;
+                        screen.innerText = prevNum
+                        break;
+                    case "-":
+                        prevNum -= curtNum;
+                        screen.innerText = prevNum
+                        break;
+
+                    case "*":
+                        prevNum *= curtNum;
+                        screen.innerText = prevNum
+                        break;
+
+                    case "/":
+                        prevNum /= curtNum;
+                        screen.innerText = prevNum
+                        break;
+
+                }
+            }
+
+        
+
+        if (operations % 2 == 0) {
+            curtNum = parseInt(screen.innerText);
+            symboleven = txt;
+
+            console.log("even operation");
+
+
+            switch (symbolodd) {
+                case "+":
+                    prevNum += curtNum;
+                    screen.innerText = prevNum
+                    break;
+                case "-":
+                    prevNum -= curtNum;
+                    screen.innerText = prevNum
+                    break;
+
+                case "*":
+                    prevNum *= curtNum;
+                    screen.innerText = prevNum
+                    break;
+
+                case "/":
+                    prevNum /= curtNum;
+                    screen.innerText = prevNum
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>

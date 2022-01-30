@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>countin is essential</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
         body {
-            /* background: linear-gradient(180deg, rgb(0, 255, 64),rgb(0, 204, 255));
-             */
             background: linear-gradient(135deg, rgba(228, 0, 0, 0.959), rgba(177, 125, 28, 0.856), rgba(161, 161, 28, 0.596), rgba(34, 180, 34, 0.534), rgba(44, 44, 170, 0.637), rgba(112, 43, 161, 0.822), rgba(255, 1, 255, 0.651));
             ;
             height: 100%;
@@ -75,11 +77,42 @@
         .oper:active {
             box-shadow: 2px 2px gray;
         }
+
+        h1{
+            font-size: 50px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            color: rgb(35, 62, 87);
+        }
+        p{
+            font-size: 24px;
+            color: rgb(35, 62, 87);
+            margin-bottom: 20px;
+        }
+        footer{
+            background-color: rgba(0, 0, 0, 0.657);
+            margin-bottom: 0px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-evenly;
+            color: rgb(167, 157, 142);
+        }
+        footer p{
+            color: blanchedalmond;
+        }
+        small{
+            font-size: 14px;
+        }
+        hr{
+            margin: 2.5px;
+        }
+
     </style>
 </head>
 
 <body>
     <div class="container">
+        <h1>come to count</h1>
+        <p>this calculator is just an example by a web developer</p>
         <div class="screen">0</div>
         <div class="btns">
             <button>1</button>
@@ -100,6 +133,13 @@
             <button class="oper">+</button>
         </div>
     </div>
+    <footer>
+        <hr>
+        <small>&copy;muhammadzahirhur082005@gmail.com</small>
+<p>Created by Muhammad Zahir Hur</p>
+        <small>Make the most of it as a learner</small>
+        <hr>
+    </footer>
     <script>
         screen = document.querySelector('.screen');
         btnsArea = document.querySelector('.btns');
